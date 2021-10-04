@@ -13,3 +13,12 @@
 ### Lambda layer zip file creation on local
 * Execute the **AWS-CLI-lambda-layer.py** for AWS Cli
 * Execute the **xlsWriter-lambda-layer.py** for xlsWriter
+
+### Script description
+* **delete_resource_boto3.py**: Delete AWS resources by using python boto3 SDK.
+* **delete_resource_CLI.py**: Delete AWS resources by using AWS Command. *Must use AWS CLI lambda layer*.
+* **list-resource-SMTP.py**: Create an Excel file of AWS resources and send the file to email by SMTP server.
+* **list-resource-SNS.py**: Create an Excel file of AWS resources, Put the file in S3 and send the file location by SNS.
+* **miscellaneous-test.py**: Small code test.
+* **lambda-role-policy-function.yaml**: CloudFormation template to create Lambda Role, Policy, Function(*Resource-deletion*).
+* **lambda-resource-list-function.yaml**: CloudFormation template to create Lambda Function(*AWS Resource containing Excel File*). ***index.py** contain the Lambda Function code. Zip it(*zip -r index.zip index.py*) and upload to S3 bucket.*
