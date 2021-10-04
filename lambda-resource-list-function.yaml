@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Lambda CF for listing AWS resources and send by SNS
+Parameters:
+  LambdaFunctionName:
+    Description: "Lambda function name"
+    Type: String
+    MinLength: 1
+Resources:
+  resourceListCreationLambda:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Description: Lambda function to create unnecessary resource file in excel and send it by sns
+      FunctionName: !Ref LambdaFunctionName
+      Handler: index.lambda_handler
+      Role : arn:aws:iam::450454010996:role/lambda-role-to-list-resources-and-send-email-by-sns
+      Runtime: python3.9
+      Layers: 
+        - arn:aws:lambda:ap-northeast-1:450454010996:layer:xlsWriter:1
+      Timeout: 60
+      Code:
+        S3Bucket: ahad-test-3
+        S3Key: index.zip
+Outputs:
+  LambdaFunctionName:
+    Description: Lambda function name
+    Value: !Ref LambdaFunctionName
