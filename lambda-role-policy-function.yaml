@@ -1,0 +1,122 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Lambda IAM Role, Policy, Function template
+Parameters:
+  LambdaFunctionName:
+    Description: "Lambda function name"
+    Type: String
+    MinLength: 1
+Resources:
+  lambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess
+      RoleName: "lambda-resource-deletion-role"
+      Description: "serverless system role for lambda-resource-deletion-role"
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          -
+            Effect: Allow
+            Principal:
+              Service:
+                - "lambda.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+
+  lambdaPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - 
+            Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource:
+              - !Sub "arn:aws:logs:ap-northeast-1:450454010996:log-group:/aws/lambda/${LambdaFunctionName}" 
+              - !Sub "arn:aws:logs:ap-northeast-1:450454010996:log-group:/aws/lambda/${LambdaFunctionName}:*"
+          -
+            Effect: Allow
+            Action:
+              - "s3:GetAccountPublicAccessBlock"
+              - "s3:ListAllMyBuckets"
+            Resource: '*'
+          -
+            Effect: Allow
+            Action:
+              - "s3:GetObject"
+              - "s3:List*"
+              - "s3:DeleteObject"
+              - "s3:DeleteBucket"
+            Resource: '*'
+          -
+            Effect: Allow
+            Action:
+              - "ec2:TerminateInstances"
+            Resource: '*'
+      Roles:
+        - !Ref lambdaRole
+
+  resourceDeletionLambda:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Description: Lambda function to delete unnecessary resources
+      FunctionName: !Sub ${LambdaFunctionName}
+      Handler: index.lambda_handler
+      Role : !GetAtt lambdaRole.Arn
+      Runtime: python3.8
+      Timeout: 30
+      Code:
+        ZipFile: |
+            import boto3
+            
+            def bucket():
+                client = boto3.client('s3') 
+                response = client.list_buckets()
+                if (len(response['Buckets']) != 0):
+                    for bucket in response['Buckets']:
+                        if not bucket['Name'].startswith('ahad'):
+                            print(f"..........Working on bucket: \"{bucket['Name']}\"..........")
+                            objects = client.list_objects(Bucket=bucket['Name'])
+                            content = objects.get('Contents', [])
+                            if (len(content) != 0):
+                                updated_content = []
+                                for cont in content:
+                                    new_cont = cont['Key']
+                                    cont.clear()
+                                    cont['Key'] = new_cont
+                                    updated_content.append(cont) 
+                                print(f"..........Deleting objects under bucket: {bucket['Name']}..........")
+                                client.delete_objects(Bucket=bucket['Name'], Delete={'Objects':updated_content})
+                                # for object in objects['Contents']:
+                                #     client.delete_object(Bucket=bucket['Name'], Key=object['Key'])
+                            client.delete_bucket(Bucket=bucket['Name'])
+                            print(f"..........\"{bucket['Name']}\" --> Bucket is deleted..........")
+                        else:
+                            print(f"*******\"{bucket['Name']}\" --> This bucket can not be deleted*******")
+                else:
+                    print("*********No bucket found*********")
+            
+            def ecc():
+              client = boto3.client('ec2')
+              response = client.describe_instances()
+              if (len(response['Reservations']) != 0):
+                  for reservation in response["Reservations"]:
+                      for instance in reservation["Instances"]:
+                          if (instance["State"]["Name"] == "running"):
+                              print(f"..........Working on Instance: \"{instance['InstanceId']}\"..........")
+                              response = client.terminate_instances(InstanceIds=[instance['InstanceId']])
+                              print(f"..........\"{instance['InstanceId']}\" --> Instance is deleted..........")
+                              
+              else:
+                  print("*********No EC2 instances found*********")
+                    
+            def lambda_handler(event, context):
+                    print("____________Start exec____________")
+                    bucket()
+                    ecc()
+                    print("_____________End exec_____________")
