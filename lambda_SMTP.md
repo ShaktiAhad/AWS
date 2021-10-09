@@ -1,4 +1,4 @@
-## I wasn’t able to send email using Gmail username/password. I made following changes to make it work.
+## How to use SMTP server in lambda function to send attachment.
 
 ## Create password for external App(In our case `Lambda function`)
 Got to [Google Account Security](https://myaccount.google.com/security) and Scroll down to **"Signing in to Google"** option. If you don't have 2 step verification on; enable it. Then you will see **"App passwords"** option. Generate a password for your lambda function. 
