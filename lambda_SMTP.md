@@ -45,7 +45,7 @@ import os
 
 os.system(
     '''
-    echo ".............All good! Ready to go!............."
+    echo ".............Hello! Ready to go!............."
     export ZIP_FILE_NAME="xlswriter.zip" 
     cd ~/Desktop
     mkdir -p python/lib/python3.9/site-packages
