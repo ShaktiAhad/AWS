@@ -1,11 +1,13 @@
 ## How to use SMTP server in lambda function to send attachment.
 
-## Create password for external App(In our case `Lambda function`)
+### Create password for external App(In our case `Lambda function`)
 Got to [Google Account Security](https://myaccount.google.com/security) and Scroll down to **"Signing in to Google"** option. If you don't have 2 step verification on; enable it. Then you will see **"App passwords"** option. Generate a password for your lambda function. 
 * ***Make sure to copy the Password else you will not be able to copy it later.*** 
 
-## Sample lambda function in python to check SMTP server
-I have used following code to verify my SMTP server is working. 
+### Sample lambda function in python to check SMTP server
+* **Lambda function creation**:
+1. Create a lambda function `SMTP_lambda` with python runtime keeping rest of the options default.
+2. Copy/Paste the following code in your function to check SMTP server. 
 ```
 import smtplib, os
 
@@ -30,7 +32,7 @@ def lambda_handler(event=None, context=None):
 
 lambda_handler()
 ```
-## Send attachment using SMTP server
+### Send attachment using SMTP server
 ***As I have used xlsWriter module to create Excel file, I had to create a lambda layer for that. First I will explain how I created the lambda layer.***
 
 ### xlsWriterlambda layer creation:
