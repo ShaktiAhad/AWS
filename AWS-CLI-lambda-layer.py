@@ -37,6 +37,5 @@ os.system(
     ls -al | grep awscli-lambda-layer.zip                   # Check the zip file availability
     mv awscli-lambda-layer.zip ~/Desktop                    # Move the zip file to Desktop
     echo ".............Check the file:${ZIP_FILE_NAME} on your Desktop............."
-
     '''
 )
