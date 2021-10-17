@@ -35,7 +35,7 @@ lambda_handler()
 ### Send attachment using SMTP server
 ***As I have used xlsWriter module to create Excel file, I had to create a lambda layer for that. First I will explain how I created the lambda layer.***
 
-### xlsWriterlambda layer creation:
+### xlsWriterlambda layer creation: [AWS documentation of Layer paths for each Lambda runtime](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html#configuration-layers-path)
 Create a file `xlsWriter.py` on your local `~/Desktop` path and copy/paste the following command. It will create  `xlswriter.zip` file on your Desktop. 
 ```   
 """
