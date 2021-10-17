@@ -101,8 +101,8 @@ def lambda_handler(event=None, context=None):
     sender = os.getenv("SENDER")
     receiver = os.getenv("RECEIVER")
     password = os.getenv("PASSWORD")
-    host = os.getenv("SMTPHOST")
-    port = os.getenv("SMTPPORT")
+    host = os.getenv("SMTPHOST") # smtp.gmail.com
+    port = os.getenv("SMTPPORT") # 587
 
     msg = MIMEMultipart()
     msg['From'] = sender
