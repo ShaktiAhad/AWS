@@ -1,4 +1,4 @@
-# This repo is for creating different AWS resources(Lambda,SNS,cloudFormation,..)
+# This repo is for playing around with different AWS resources(Lambda,SNS,cloudFormation,..)
 ## Useful links
 * Create lambda layer: https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html
 * Deployment package with dependencies in the same function: https://docs.aws.amazon.com/lambda/latest/dg/python-package.html#python-package-create-package-with-dependency
