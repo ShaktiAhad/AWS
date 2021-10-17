@@ -82,7 +82,7 @@ SMTP_attachment_lambda
 ├── __init.py__
 └── lambda_function.py
 ```
-* **Code**:
+* **Code**: **Copy/Paste following code inside `lambda_function.py` file**
 ``` 
 import smtplib, os, xlsxwriter
 from email.mime.application import MIMEApplication
