@@ -75,11 +75,9 @@ After creating the zip file use following steps to upload file and create the la
 4. Choose **Specify An ARN** option paste the layer ARN in the blank field.
 5. Click **verify** then **Add**.
 * **Make sure you create the excel file in `/tmp` folder. Else you will get following error `"errorMessage": "[Errno 30] Read-only file system: '/hello.xlsx'"`**
-* **Also you need to create `__init.py__` file. Else you will get lots of following error `"File \"<frozen importlib._bootstrap>\"`**
 * **Lambda Folder tree**:
 ```
 SMTP_attachment_lambda
-├── __init.py__
 └── lambda_function.py
 ```
 * **Code**: **Copy/Paste following code inside `lambda_function.py` file**
