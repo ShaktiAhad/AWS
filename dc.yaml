@@ -1,0 +1,265 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","metadata":{"annotations":{"template.alpha.openshift.io/wait-for-ready":"true"},"labels":{"app":"talend-harvesting-server","template":"talend-app"},"name":"talend-harvesting-server","namespace":"talenddatacatalog-testing-axa-li-jp"},"spec":{"replicas":0,"revisionHistoryLimit":1,"selector":{"name":"talend-harvesting-server"},"strategy":{"type":"Rolling"},"template":{"metadata":{"labels":{"name":"talend-harvesting-server"},"name":"talend-harvesting-server"},"spec":{"containers":[{"env":[{"name":"http_proxy","value":"http://egress-http-proxy:8080"},{"name":"https_proxy","value":"http://egress-http-proxy:8080"},{"name":"HTTP_PROXY","value":"http://egress-http-proxy:8080"},{"name":"HTTPS_PROXY","value":"http://egress-http-proxy:8080"},{"name":"NO_PROXY","value":".local,.svc,.internal,.intraxa,.axa-cloud.com,10.96.0.1,10.3.28.141,127.0.0.1,localhost"},{"name":"no_proxy","value":".local,.svc,.internal,.intraxa,.axa-cloud.com,10.96.0.1,10.3.28.141,127.0.0.1,localhost"},{"name":"HTTP_PROXY_HOST","value":"egress-http-proxy"},{"name":"HTTP_PROXY_PORT","value":"8080"}],"image":"image-registry.openshift-image-registry.svc:5000/talenddatacatalog-testing-axa-li-jp/talend-harvesting-server:7.3-20211028","name":"talend-harvesting-server","resources":{"limits":{"cpu":"1500m","memory":"4500Mi"},"requests":{"cpu":"1500m","memory":"4500Mi"}}}]}}}}
+    template.alpha.openshift.io/wait-for-ready: 'true'
+  resourceVersion: '1795033154'
+  name: talend-harvesting-server
+  uid: 3d48e011-50f3-497f-94a0-c2b686a3cbc9
+  creationTimestamp: '2021-11-25T06:32:31Z'
+  generation: 61
+  managedFields:
+    - manager: oc
+      operation: Update
+      apiVersion: apps.openshift.io/v1
+      time: '2021-11-25T06:32:31Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+            'f:template.alpha.openshift.io/wait-for-ready': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:template': {}
+        'f:spec':
+          'f:revisionHistoryLimit': {}
+          'f:selector':
+            .: {}
+            'f:name': {}
+          'f:strategy':
+            'f:activeDeadlineSeconds': {}
+            'f:rollingParams':
+              .: {}
+              'f:intervalSeconds': {}
+              'f:maxSurge': {}
+              'f:maxUnavailable': {}
+              'f:timeoutSeconds': {}
+              'f:updatePeriodSeconds': {}
+            'f:type': {}
+          'f:template':
+            .: {}
+            'f:metadata':
+              .: {}
+              'f:creationTimestamp': {}
+              'f:labels':
+                .: {}
+                'f:name': {}
+              'f:name': {}
+            'f:spec':
+              .: {}
+              'f:containers':
+                .: {}
+                'k:{"name":"talend-harvesting-server"}':
+                  .: {}
+                  'f:env':
+                    'k:{"name":"HTTP_PROXY_HOST"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"HTTPS_PROXY"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"https_proxy"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    .: {}
+                    'k:{"name":"NO_PROXY"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"no_proxy"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"HTTP_PROXY"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"http_proxy"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"HTTP_PROXY_PORT"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                  'f:imagePullPolicy': {}
+                  'f:name': {}
+                  'f:resources': {}
+                  'f:terminationMessagePath': {}
+                  'f:terminationMessagePolicy': {}
+              'f:dnsPolicy': {}
+              'f:restartPolicy': {}
+              'f:schedulerName': {}
+              'f:securityContext': {}
+              'f:terminationGracePeriodSeconds': {}
+          'f:triggers': {}
+    - manager: Mozilla
+      operation: Update
+      apiVersion: apps.openshift.io/v1
+      time: '2021-11-28T09:00:57Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:template':
+            'f:spec':
+              'f:containers':
+                'k:{"name":"talend-harvesting-server"}':
+                  'f:env':
+                    'k:{"name":"AGENT_STRING"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:secretKeyRef':
+                          .: {}
+                          'f:key': {}
+                          'f:name': {}
+                    'k:{"name":"CLOUD_URL"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                  'f:image': {}
+                  'f:ports':
+                    .: {}
+                    'k:{"containerPort":8080,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:protocol': {}
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: apps.openshift.io/v1
+      time: '2021-11-28T18:14:27Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:availableReplicas': {}
+          'f:conditions':
+            .: {}
+            'k:{"type":"Available"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Progressing"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+          'f:details':
+            .: {}
+            'f:causes': {}
+            'f:message': {}
+          'f:latestVersion': {}
+          'f:observedGeneration': {}
+          'f:replicas': {}
+          'f:unavailableReplicas': {}
+          'f:updatedReplicas': {}
+  namespace: talenddatacatalog-testing-axa-li-jp
+  labels:
+    app: talend-harvesting-server
+    template: talend-app
+spec:
+  strategy:
+    type: Rolling
+    rollingParams:
+      updatePeriodSeconds: 1
+      intervalSeconds: 1
+      timeoutSeconds: 600
+      maxUnavailable: 25%
+      maxSurge: 25%
+    resources: {}
+    activeDeadlineSeconds: 21600
+  triggers:
+    - type: ConfigChange
+  replicas: 0
+  revisionHistoryLimit: 1
+  test: false
+  selector:
+    name: talend-harvesting-server
+  template:
+    metadata:
+      name: talend-harvesting-server
+      creationTimestamp: null
+      labels:
+        name: talend-harvesting-server
+    spec:
+      containers:
+        - name: talend-harvesting-server
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/talenddatacatalog-testing-axa-li-jp/datacatalog-remote-harvesting-agent:7.3-20211028
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: http_proxy
+              value: 'http://egress-http-proxy:8080'
+            - name: https_proxy
+              value: 'http://egress-http-proxy:8080'
+            - name: HTTP_PROXY
+              value: 'http://egress-http-proxy:8080'
+            - name: HTTPS_PROXY
+              value: 'http://egress-http-proxy:8080'
+            - name: NO_PROXY
+              value: >-
+                .local,.svc,.internal,.intraxa,.axa-cloud.com,10.96.0.1,10.3.28.141,127.0.0.1,localhost
+            - name: no_proxy
+              value: >-
+                .local,.svc,.internal,.intraxa,.axa-cloud.com,10.96.0.1,10.3.28.141,127.0.0.1,localhost
+            - name: HTTP_PROXY_HOST
+              value: egress-http-proxy
+            - name: HTTP_PROXY_PORT
+              value: '8080'
+            - name: CLOUD_URL
+              value: axalifeinsurance293.datacatalog.ap.cloud.talend.com
+            - name: AGENT_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: agent-string
+                  key: string
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+status:
+  latestVersion: 19
+  observedGeneration: 61
+  replicas: 0
+  updatedReplicas: 0
+  availableReplicas: 0
+  unavailableReplicas: 0
+  details:
+    message: config change
+    causes:
+      - type: ConfigChange
+  conditions:
+    - type: Available
+      status: 'False'
+      lastUpdateTime: '2021-11-28T13:47:36Z'
+      lastTransitionTime: '2021-11-28T13:47:36Z'
+      message: Deployment config does not have minimum availability.
+    - type: Progressing
+      status: 'True'
+      lastUpdateTime: '2021-11-28T18:14:27Z'
+      lastTransitionTime: '2021-11-28T18:14:27Z'
+      reason: NewReplicationControllerAvailable
+      message: >-
+        replication controller "talend-harvesting-server-19" successfully rolled
+        out
