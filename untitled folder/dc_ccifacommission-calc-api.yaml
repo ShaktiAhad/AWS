@@ -1,0 +1,117 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","metadata":{"annotations":{"template.alpha.openshift.io/wait-for-ready":"true"},"creationTimestamp":"2021-05-11T04:47:34Z","generation":369,"labels":{"app":"ccifacommission-calc-api","scaled-down-by-jenkins":"true","template":"java-app"},"managedFields":[{"apiVersion":"apps.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{".":{},"f:template.alpha.openshift.io/wait-for-ready":{}},"f:labels":{".":{},"f:app":{},"f:template":{}}},"f:spec":{"f:selector":{".":{},"f:name":{}},"f:strategy":{"f:activeDeadlineSeconds":{},"f:rollingParams":{".":{},"f:intervalSeconds":{},"f:maxSurge":{},"f:maxUnavailable":{},"f:timeoutSeconds":{},"f:updatePeriodSeconds":{}},"f:type":{}},"f:template":{".":{},"f:metadata":{".":{},"f:creationTimestamp":{},"f:labels":{".":{},"f:name":{}},"f:name":{}},"f:spec":{".":{},"f:containers":{".":{},"k:{\"name\":\"ccifacommission-calc-api\"}":{".":{},"f:imagePullPolicy":{},"f:livenessProbe":{".":{},"f:failureThreshold":{},"f:httpGet":{".":{},"f:scheme":{}},"f:initialDelaySeconds":{},"f:periodSeconds":{},"f:successThreshold":{},"f:timeoutSeconds":{}},"f:name":{},"f:ports":{".":{},"k:{\"containerPort\":8778,\"protocol\":\"TCP\"}":{".":{},"f:containerPort":{},"f:name":{},"f:protocol":{}}},"f:readinessProbe":{".":{},"f:failureThreshold":{},"f:httpGet":{".":{},"f:scheme":{}},"f:initialDelaySeconds":{},"f:periodSeconds":{},"f:successThreshold":{},"f:timeoutSeconds":{}},"f:resources":{".":{},"f:limits":{".":{},"f:cpu":{},"f:memory":{}},"f:requests":{".":{},"f:cpu":{},"f:memory":{}}},"f:terminationMessagePath":{},"f:terminationMessagePolicy":{}}},"f:dnsPolicy":{},"f:restartPolicy":{},"f:schedulerName":{},"f:securityContext":{},"f:terminationGracePeriodSeconds":{}}}}},"manager":"oc","operation":"Update","time":"2021-06-03T23:01:32Z"},{"apiVersion":"apps.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:spec":{"f:template":{"f:spec":{"f:containers":{"k:{\"name\":\"ccifacommission-calc-api\"}":{"f:env":{".":{},"k:{\"name\":\"KEY_STORE_JKS\"}":{".":{},"f:name":{},"f:value":{}},"k:{\"name\":\"PASSWORD_JKS\"}":{".":{},"f:name":{},"f:valueFrom":{".":{},"f:secretKeyRef":{".":{},"f:key":{},"f:name":{}}}},"k:{\"name\":\"TRUST_STORE_JKS\"}":{".":{},"f:name":{},"f:value":{}}},"f:envFrom":{},"f:livenessProbe":{"f:httpGet":{"f:path":{},"f:port":{}}},"f:ports":{"k:{\"containerPort\":8080,\"protocol\":\"TCP\"}":{".":{},"f:containerPort":{},"f:name":{},"f:protocol":{}}},"f:readinessProbe":{"f:httpGet":{"f:path":{},"f:port":{}}},"f:volumeMounts":{".":{},"k:{\"mountPath\":\"/var/run/secrets/java.io/jks/keystore.jks\"}":{".":{},"f:mountPath":{},"f:name":{},"f:readOnly":{},"f:subPath":{}},"k:{\"mountPath\":\"/var/run/secrets/java.io/jks/truststore.jks\"}":{".":{},"f:mountPath":{},"f:name":{},"f:readOnly":{},"f:subPath":{}}}}},"f:volumes":{".":{},"k:{\"name\":\"keystore\"}":{".":{},"f:name":{},"f:secret":{".":{},"f:defaultMode":{},"f:secretName":{}}},"k:{\"name\":\"truststore\"}":{".":{},"f:name":{},"f:secret":{".":{},"f:defaultMode":{},"f:secretName":{}}}}}}}},"manager":"Mozilla","operation":"Update","time":"2021-09-02T07:49:27Z"},{"apiVersion":"apps.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:status":{"f:availableReplicas":{},"f:conditions":{".":{},"k:{\"type\":\"Available\"}":{".":{},"f:lastTransitionTime":{},"f:lastUpdateTime":{},"f:message":{},"f:status":{},"f:type":{}},"k:{\"type\":\"Progressing\"}":{".":{},"f:lastTransitionTime":{},"f:lastUpdateTime":{},"f:message":{},"f:reason":{},"f:status":{},"f:type":{}}},"f:details":{".":{},"f:causes":{},"f:message":{}},"f:latestVersion":{},"f:observedGeneration":{},"f:readyReplicas":{},"f:replicas":{},"f:unavailableReplicas":{},"f:updatedReplicas":{}}},"manager":"openshift-controller-manager","operation":"Update","time":"2021-12-10T03:13:40Z"},{"apiVersion":"apps.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{"f:kubectl.kubernetes.io/last-applied-configuration":{}},"f:labels":{"f:scaled-down-by-jenkins":{}}},"f:spec":{"f:replicas":{},"f:template":{"f:spec":{"f:containers":{"k:{\"name\":\"ccifacommission-calc-api\"}":{"f:image":{}}}}},"f:triggers":{}}},"manager":"kubectl-client-side-apply","operation":"Update","time":"2021-12-10T11:31:12Z"}],"name":"ccifacommission-calc-api","namespace":"ccifacommission-dev-axa-li-jp","resourceVersion":"1864341487","uid":"e8030514-992b-49ca-851f-29e943b9b68e"},"spec":{"replicas":0,"revisionHistoryLimit":10,"selector":{"name":"ccifacommission-calc-api"},"strategy":{"activeDeadlineSeconds":21600,"resources":{},"rollingParams":{"intervalSeconds":1,"maxSurge":"25%","maxUnavailable":"25%","timeoutSeconds":600,"updatePeriodSeconds":1},"type":"Rolling"},"template":{"metadata":{"creationTimestamp":null,"labels":{"name":"ccifacommission-calc-api"},"name":"ccifacommission-calc-api"},"spec":{"containers":[{"env":[{"name":"KEY_STORE_JKS","value":"/var/run/secrets/java.io/jks/keystore.jks"},{"name":"TRUST_STORE_JKS","value":"/var/run/secrets/java.io/jks/truststore.jks"},{"name":"PASSWORD_JKS","valueFrom":{"secretKeyRef":{"key":"password","name":"password"}}}],"envFrom":[{"secretRef":{"name":"mysql-aws-tool-config-ccifacom-db"}}],"image":"image-registry.openshift-image-registry.svc:5000/ccifacommission-dev-axa-li-jp/ccifacommission-calc-api:0.0.1-SNAPSHOT","imagePullPolicy":"Always","livenessProbe":{"failureThreshold":3,"httpGet":{"path":"/api/actuator/health","port":8080,"scheme":"HTTP"},"initialDelaySeconds":300,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":5},"name":"ccifacommission-calc-api","ports":[{"containerPort":8778,"name":"jolokia","protocol":"TCP"},{"containerPort":8080,"name":"http","protocol":"TCP"}],"readinessProbe":{"failureThreshold":3,"httpGet":{"path":"/api/actuator/health","port":8080,"scheme":"HTTP"},"initialDelaySeconds":300,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":5},"resources":{"limits":{"cpu":"187m","memory":"900Mi"},"requests":{"cpu":"187m","memory":"900Mi"}},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","volumeMounts":[{"mountPath":"/var/run/secrets/java.io/jks/keystore.jks","name":"keystore","readOnly":true,"subPath":"keystore.jks"},{"mountPath":"/var/run/secrets/java.io/jks/truststore.jks","name":"truststore","readOnly":true,"subPath":"truststore.jks"}]}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30,"volumes":[{"name":"keystore","secret":{"defaultMode":420,"secretName":"keystore"}},{"name":"truststore","secret":{"defaultMode":420,"secretName":"truststore"}}]}},"test":false,"triggers":[]},"status":{"availableReplicas":1,"conditions":[{"lastTransitionTime":"2021-12-09T23:52:03Z","lastUpdateTime":"2021-12-09T23:52:03Z","message":"Deployment
+      config has minimum availability.","status":"True","type":"Available"},{"lastTransitionTime":"2021-12-10T03:18:59Z","lastUpdateTime":"2021-12-10T03:19:01Z","message":"replication
+      controller \"ccifacommission-calc-api-52\" successfully rolled out","reason":"NewReplicationControllerAvailable","status":"True","type":"Progressing"}],"details":{"causes":[{"type":"Manual"}],"message":"manual
+      change"},"latestVersion":52,"observedGeneration":369,"readyReplicas":1,"replicas":1,"unavailableReplicas":0,"updatedReplicas":1}}
+
+      '
+    template.alpha.openshift.io/wait-for-ready: 'true'
+  labels:
+    app: ccifacommission-calc-api
+    scaled-down-by-jenkins: 'true'
+    template: java-app
+  name: ccifacommission-calc-api
+  namespace: ccifacommission-dev-axa-li-jp
+spec:
+  replicas: 0
+  revisionHistoryLimit: 10
+  selector:
+    name: ccifacommission-calc-api
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: ccifacommission-calc-api
+      name: ccifacommission-calc-api
+    spec:
+      containers:
+      - env:
+        - name: KEY_STORE_JKS
+          value: /var/run/secrets/java.io/jks/keystore.jks
+        - name: TRUST_STORE_JKS
+          value: /var/run/secrets/java.io/jks/truststore.jks
+        - name: PASSWORD_JKS
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: password
+        envFrom:
+        - secretRef:
+            name: mysql-aws-tool-config-ccifacom-db
+        image: image-registry.openshift-image-registry.svc:5000/ccifacommission-dev-axa-li-jp/ccifacommission-calc-api:0.0.1-SNAPSHOT
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /api/actuator/health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 300
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        name: ccifacommission-calc-api
+        ports:
+        - containerPort: 8778
+          name: jolokia
+          protocol: TCP
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /api/actuator/health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 300
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 187m
+            memory: 900Mi
+          requests:
+            cpu: 187m
+            memory: 900Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/java.io/jks/keystore.jks
+          name: keystore
+          readOnly: true
+          subPath: keystore.jks
+        - mountPath: /var/run/secrets/java.io/jks/truststore.jks
+          name: truststore
+          readOnly: true
+          subPath: truststore.jks
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: keystore
+        secret:
+          defaultMode: 420
+          secretName: keystore
+      - name: truststore
+        secret:
+          defaultMode: 420
+          secretName: truststore
+  test: false
+  triggers: []

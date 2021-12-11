@@ -1,0 +1,55 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"build.openshift.io/v1","kind":"BuildConfig","metadata":{"annotations":{"template.alpha.openshift.io/wait-for-ready":"true"},"creationTimestamp":"2021-05-11T04:47:33Z","generation":25,"labels":{"app":"ccifacommission-calc-api","template":"java-app"},"managedFields":[{"apiVersion":"build.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{".":{},"f:template.alpha.openshift.io/wait-for-ready":{}},"f:labels":{".":{},"f:app":{},"f:template":{}}},"f:spec":{"f:output":{"f:to":{".":{},"f:kind":{},"f:name":{}}},"f:resources":{"f:limits":{".":{},"f:cpu":{},"f:memory":{}},"f:requests":{".":{},"f:cpu":{},"f:memory":{}}},"f:runPolicy":{},"f:source":{"f:git":{".":{},"f:ref":{},"f:uri":{}},"f:sourceSecret":{".":{},"f:name":{}},"f:type":{}},"f:strategy":{"f:sourceStrategy":{".":{},"f:from":{".":{},"f:kind":{},"f:namespace":{}}},"f:type":{}}}},"manager":"oc","operation":"Update","time":"2021-05-11T04:47:33Z"},{"apiVersion":"build.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:spec":{"f:strategy":{"f:sourceStrategy":{"f:env":{},"f:from":{"f:name":{}}}}}},"manager":"Mozilla","operation":"Update","time":"2021-05-11T05:40:47Z"},{"apiVersion":"build.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{"f:kubectl.kubernetes.io/last-applied-configuration":{}}}},"manager":"kubectl-client-side-apply","operation":"Update","time":"2021-06-17T02:05:17Z"},{"apiVersion":"build.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:status":{"f:lastVersion":{}}},"manager":"openshift-apiserver","operation":"Update","time":"2021-06-17T02:05:17Z"}],"name":"ccifacommission-calc-api","namespace":"ccifacommission-dev-axa-li-jp","resourceVersion":"1862183367","uid":"23c406b4-9f2e-4efb-805d-fe3e9843951b"},"spec":{"failedBuildsHistoryLimit":5,"nodeSelector":null,"output":{"to":{"kind":"ImageStreamTag","name":"ccifacommission-calc-api:latest"}},"postCommit":{},"resources":{"limits":{"cpu":"200m","memory":"600Mi"},"requests":{"cpu":"200m","memory":"600Mi"}},"runPolicy":"Serial","source":{"git":{"ref":"develop","uri":"git@github.axa.com:aljdevops/ccifa-commission-calc-api.git"},"sourceSecret":{"name":"github-ccifa-commission-calc-api"},"type":"Git"},"strategy":{"sourceStrategy":{"env":[{"name":"USER","valueFrom":{"secretKeyRef":{"key":"USER","name":"mvn-artifactory-secret"}}},{"name":"TOKEN","valueFrom":{"secretKeyRef":{"key":"TOKEN","name":"mvn-artifactory-secret"}}}],"from":{"kind":"ImageStreamTag","name":"openpaas-hardened-openjdk11-ubi8:release","namespace":"openpaas"}},"type":"Source"},"successfulBuildsHistoryLimit":5},"status":{"lastVersion":41}}
+
+      '
+    template.alpha.openshift.io/wait-for-ready: 'true'
+  labels:
+    app: ccifacommission-calc-api
+    template: java-app
+  name: ccifacommission-calc-api
+  namespace: ccifacommission-dev-axa-li-jp
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: ccifacommission-calc-api:latest
+  postCommit: {}
+  resources:
+    limits:
+      cpu: 200m
+      memory: 600Mi
+    requests:
+      cpu: 200m
+      memory: 600Mi
+  runPolicy: Serial
+  source:
+    git:
+      ref: develop
+      uri: git@github.axa.com:aljdevops/ccifa-commission-calc-api.git
+    sourceSecret:
+      name: github-ccifa-commission-calc-api
+    type: Git
+  strategy:
+    sourceStrategy:
+      env:
+      - name: USER
+        valueFrom:
+          secretKeyRef:
+            key: USER
+            name: mvn-artifactory-secret
+      - name: TOKEN
+        valueFrom:
+          secretKeyRef:
+            key: TOKEN
+            name: mvn-artifactory-secret
+      from:
+        kind: ImageStreamTag
+        name: openpaas-hardened-openjdk11-ubi8:release
+        namespace: openpaas
+    type: Source
+  successfulBuildsHistoryLimit: 5
